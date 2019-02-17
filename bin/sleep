@@ -2,5 +2,5 @@
 #
 # sleep in pure bash.
 
-IFS= read -d "" -t "${1:-1}"
+IFS= read -d "" -rt "${1:-1}"
 exit 0

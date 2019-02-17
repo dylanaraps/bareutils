@@ -2,4 +2,9 @@
 #
 # date in pure bash.
 
-printf "%($1)T\\n"
+date_format="$1"
+
+[[ ${date_format:0:1} == + ]] &&
+    date_format="${date_format/+}"
+
+printf "%($date_format)T\\n"

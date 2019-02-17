@@ -3,5 +3,5 @@
 # yes in pure bash.
 
 for ((;;)); {
-    printf '%s\n' "${1:-y}"
+    printf '%s\n' "${1:=y}"
 }

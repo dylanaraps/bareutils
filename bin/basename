@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# cat in pure bash.
+
+for file in "$@"; do
+    file="${file%/}"
+    printf '%s\n' "${file##*/}"
+done

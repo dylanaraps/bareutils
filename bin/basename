@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# cat in pure bash.
+# basename in pure bash.
 
 for file in "$@"; do
     file="${file%/}"

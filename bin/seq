@@ -13,7 +13,7 @@
 [[ $3 ]] &&
     increment="$2"
 
-last="${@: -1}"
+last="${*: -1}"
 
 for ((i=${first:=1};i<=last;i+=${increment:=1})); {
     printf '%s\n' "$i"

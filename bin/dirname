@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# dirname in pure bash.
+
+for file in "$@"; do
+    printf '%s\n' "${file%/*}/"
+done

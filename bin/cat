@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# cat in pure bash.
+
+for file in "$@"; do
+    [[ ! -f $file ]] && {
+        printf '%s\n' "cat: $file: No such file or directory." >&2
+        exit 1
+    }
+
+    printf '%s\n' "$(<"$file")"
+done

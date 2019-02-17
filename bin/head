@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# head in pure bash.
+
+while getopts ":n:" opt; do
+    case $opt in
+        n) max_lines="$OPTARG" ;;
+
+        :)
+            printf '%s\n' "option -$OPTARG requires an argument." >&2
+            exit 1
+        ;;
+
+        ?)
+            printf '%s\n' "error: -$OPTARG not a valid option." >&2
+            exit 1
+        ;;
+    esac
+
+    shift "$((OPTIND - 1))"
+done
+
+[[ ! -f $1 ]] && {
+    printf '%s\n' "head: ${1:-null}: No such file or directory." >&2
+    exit 1
+}
+
+mapfile -tn "${max_lines:-10}" file_data < "$1"
+printf '%s\n' "${file_data[@]}"

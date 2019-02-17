@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# date in pure bash.
+
+printf "%($1)T\\n"

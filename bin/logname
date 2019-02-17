@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# logname in pure bash.
+
+: '\u'
+printf '%s\n' "${_@P}"

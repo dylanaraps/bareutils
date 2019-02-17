@@ -17,15 +17,15 @@ while getopts ":lcw" opt; do
     shift "$((OPTIND - 1))"
 done
 
-[[ ! -f $1 ]] && {
+[[ -t 0 && ! -f $1 ]] && {
     printf '%s\n' "wc: ${1:-null}: No such file or directory." >&2
     exit 1
 }
 
+mapfile file_data < "${1:-/dev/stdin}"
+
 [[ -z $lines && -z $bytes && -z $words ]] &&
     ((lines=1, bytes=1, words=1))
-
-mapfile file_data < "$1"
 
 [[ $lines == 1 ]] &&
     printf '%s ' "${#file_data[@]}"

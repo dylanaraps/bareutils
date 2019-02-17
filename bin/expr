@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# expr in pure bash.
+
+printf '%s\n' "$(($@))"

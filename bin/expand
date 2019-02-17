@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# expand in pure bash.
+
+[[ ! -f $1 ]] && {
+    printf '%s\n' "expand: $1: No such file or directory." >&2
+    exit 1
+}
+
+file="$(< "$1")"
+printf '%s\n' "${file//$'\t'/'        '}"

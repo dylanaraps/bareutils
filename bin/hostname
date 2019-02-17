@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# hostname in pure bash.
+
+: '\h'
+printf '%s\n' "${_@P}"

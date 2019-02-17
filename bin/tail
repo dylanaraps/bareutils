@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# tail in pure bash.
+
+while getopts ":n:" opt; do
+    case $opt in
+        n) max_lines="$OPTARG" ;;
+
+        :)
+            printf '%s\n' "option -$OPTARG requires an argument." >&2
+            exit 1
+        ;;
+
+        ?)
+            printf '%s\n' "error: -$OPTARG not a valid option." >&2
+            exit 1
+        ;;
+    esac
+
+    shift "$((OPTIND - 1))"
+done
+
+[[ ! -f $1 ]] && {
+    printf '%s\n' "tail: ${1:-null}: No such file or directory." >&2
+    exit 1
+}
+
+mapfile -tn 0 file_data < "$1"
+
+[[ ${max_lines:=0} -gt "${#file_data[@]}" ]] &&
+    max_lines="${#file_data[@]}"
+
+printf '%s\n' "${file_data[@]: -$max_lines}"

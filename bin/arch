@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# arch in pure bash.
+
+printf '%s\n' "$MACHTYPE"

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# yes in pure bash.
+
+for ((;;)); {
+    printf '%s\n' "${1:-y}"
+}

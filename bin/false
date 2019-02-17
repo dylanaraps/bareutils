@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# false in pure bash.
+
+exit 1

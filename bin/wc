@@ -27,24 +27,18 @@ mapfile file_data < "${1:-/dev/stdin}"
 [[ -z $lines && -z $bytes && -z $words ]] &&
     ((lines=1, bytes=1, words=1))
 
+for line in "${file_data[@]}"; do
+    read -ra line_split <<< "$line"
+    ((splits+=${#line_split[@]}, chars+=${#line}))
+done
+
 [[ $lines == 1 ]] &&
     printf '%s ' "${#file_data[@]}"
 
-[[ $words == 1 ]] && {
-    for line in "${file_data[@]}"; do
-        read -ra line_split <<< "$line"
-        ((splits+=${#line_split[@]}))
-    done
-
+[[ $words ]] &&
     printf '%s ' "$splits"
-}
 
-[[ $bytes == 1 ]] && {
-    for line in "${file_data[@]}"; do
-        ((chars+=${#line}))
-    done
-
+[[ $bytes ]] &&
     printf '%s ' "$chars"
-}
 
-printf '%s\n' "$1"
+printf '\n'

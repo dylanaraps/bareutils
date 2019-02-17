@@ -2,4 +2,13 @@
 #
 # printenv in pure bash.
 
-printf '%s\n' "${!1}"
+[[ $1 ]] && {
+    printf '%s\n' "${!1}"
+    exit 0
+}
+
+mapfile -t envars < <(compgen -v)
+
+for var in "${envars[@]}"; do
+    printf '%s=%s\n' "$var" "${!var}"
+done

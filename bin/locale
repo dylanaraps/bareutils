@@ -16,9 +16,10 @@ locale_vars=(
     LC_TELEPHONE
     LC_MEASUREMENT
     LC_IDENTIFICATION
-    LC_ALL
 )
 
+
 for var in "${locale_vars[@]}"; do
-    printf '%s=%s\n' "$var" "${!var:-$LANG}"
+    printf '%s=\"%s\"\n' "$var" "${!var:-$LANG}"
 done
+printf '%s=%s\n' "LC_ALL" "$LC_ALL"

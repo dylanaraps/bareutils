@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# env in pure bash.
+
+mapfile -t envars < <(compgen -v)
+
+for var in "${envars[@]}"; do
+    printf '%s=%s\n' "$var" "${!var}"
+done

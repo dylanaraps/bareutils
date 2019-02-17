@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# realpath in pure bash.
+
+file="${1%/}"
+parent_dir="${file%/*}"
+
+[[ -f ${PWD}/${file##*/} ]] && {
+    printf '%s\n' "${PWD}/${file##*/}"
+    exit 0
+}
+
+cd "$parent_dir" &>/dev/null || exit 1 &&
+    printf '%s\n' "${PWD}/${file##*/}"

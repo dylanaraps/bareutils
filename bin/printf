@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# printf in pure bash.
+
+printf "$@"

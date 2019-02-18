@@ -33,13 +33,8 @@ done
 [[ -z $lines && -z $bytes && -z $words ]] &&
     ((lines=1, bytes=1, words=1))
 
-[[ $lines ]] &&
-    printf '%s ' "${#file_data[@]}"
-
-[[ $words ]] &&
-    printf '%s ' "$splits"
-
-[[ $bytes ]] &&
-    printf '%s ' "$chars"
+[[ $lines ]] && printf '%s ' "${#file_data[@]}"
+[[ $words ]] && printf '%s ' "$splits"
+[[ $bytes ]] && printf '%s ' "$chars"
 
 printf '%s\n' "$file"

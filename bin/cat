@@ -3,7 +3,7 @@
 # cat in pure bash.
 
 for file in "$@"; do
-    [[ ! -f $file ]] && {
+    [[ ! -f "$file" ]] && {
         printf '%s\n' "cat: $file: No such file or directory." >&2
         exit 1
     }

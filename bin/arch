@@ -2,4 +2,4 @@
 #
 # arch in pure bash.
 
-printf '%s\n' "$MACHTYPE"
+printf '%s\n' "${MACHTYPE%%-*}"

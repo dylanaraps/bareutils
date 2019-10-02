@@ -2,6 +2,8 @@
 #
 # head in pure bash.
 
+max_lines=10
+
 while getopts ":n:" opt; do
     case $opt in
         n) max_lines="$OPTARG" ;;
@@ -25,5 +27,6 @@ done
     exit 1
 }
 
-mapfile -tn "${max_lines:-10}" file_data < "$1"
-printf '%s\n' "${file_data[@]}"
+mapfile file_data < "$1"
+[[ ${max_lines##-*} || $((max_lines += ${#file_data[@]})) ]]
+printf '%s' "${file_data[@]0:max_lines}"
